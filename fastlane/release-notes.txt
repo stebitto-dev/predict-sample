@@ -1,0 +1,3 @@
+Test fastlane app distribution
+    - Test1
+    - Test2

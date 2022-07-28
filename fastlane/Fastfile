@@ -1,0 +1,37 @@
+# This file contains the fastlane.tools configuration
+# You can find the documentation at https://docs.fastlane.tools
+#
+# For a list of all available actions, check out
+#
+#     https://docs.fastlane.tools/actions
+#
+# For a list of all available plugins, check out
+#
+#     https://docs.fastlane.tools/plugins/available-plugins
+#
+
+# Uncomment the line if you want fastlane to automatically update itself
+# update_fastlane
+
+default_platform(:android)
+
+platform :android do
+  desc "Runs all the tests"
+  lane :test do
+    gradle(task: "test")
+  end
+
+  desc "Submit a new beta build to Firebase App Distribution"
+  lane :distribute do
+      build_android_app(
+        task: "assemble",
+        build_type: "debug"
+      )
+      firebase_app_distribution(
+          app: "1:323113954359:android:7b9cafe69e7dcf273e63b2",
+          testers: "stefano.bitto.dev@gmail.com",
+          firebase_cli_token: "1//09TCCFZB5BjvuCgYIARAAGAkSNwF-L9IrRI2-QJIkf_KYHEMI0gKtlryOKUasJ-Z59UVG1Hxux1XKSqCLBNPQJIuOAlCqSt0ZAB0",
+          release_notes_file: "./fastlane/release-notes.txt"
+      )
+  end
+end

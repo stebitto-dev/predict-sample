@@ -76,6 +76,18 @@ lintDebug:
   only:
     - develop
 
+# Make Project
+assembleDebug:
+  interruptible: true
+  stage: build
+  script:
+    - ./gradlew assembleDebug
+  artifacts:
+    paths:
+      - app/build/outputs/
+  only:
+    - develop
+
 # Run all tests, if any fails, interrupt the pipeline(fail it)
 debugTests:
   interruptible: true
@@ -85,15 +97,11 @@ debugTests:
   only:
     - develop
 
-# Make Project
-assembleDebug:
-  interruptible: true
+# Deploy on Firebase Distribution via Fastlane (staging environment)
+deployStaging:
   stage: staging
   script:
-    - ./gradlew assembleDebug
-  artifacts:
-    paths:
-      - app/build/outputs/
+    - fastlane distribute
   environment:
     name: staging
   only:

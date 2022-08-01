@@ -4,7 +4,7 @@ import com.stebitto.agify.api.IAgifyRepository
 import com.stebitto.agify.impl.source.remote.AgifyRemoteSource
 import com.stebitto.commondto.AgifyDTO
 import kotlinx.coroutines.flow.Flow
-import kotlinx.coroutines.flow.flowOf
+import kotlinx.coroutines.flow.flow
 import javax.inject.Inject
 
 internal class AgifyRepository @Inject constructor(
@@ -12,6 +12,8 @@ internal class AgifyRepository @Inject constructor(
     private val dataMapper: AgifyDataMapper
 ) : IAgifyRepository {
 
-    override suspend fun getAgePredictionForName(name: String): Flow<AgifyDTO> =
-        flowOf(dataMapper.map(agifyRemoteSource.getAgePredictionForName(name)))
+    override fun getAgePredictionForName(name: String): Flow<AgifyDTO> = flow {
+        val prediction = dataMapper.map(agifyRemoteSource.getAgePredictionForName(name))
+        emit(prediction)
+    }
 }

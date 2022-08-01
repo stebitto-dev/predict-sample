@@ -4,5 +4,5 @@ import com.stebitto.commondto.AgifyDTO
 import kotlinx.coroutines.flow.Flow
 
 interface IAgifyRepository {
-    suspend fun getAgePredictionForName(name: String): Flow<AgifyDTO>
+    fun getAgePredictionForName(name: String): Flow<AgifyDTO>
 }

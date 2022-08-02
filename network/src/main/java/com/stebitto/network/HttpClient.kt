@@ -1,4 +1,4 @@
-package com.stebitto.network.impl
+package com.stebitto.network
 
 import dagger.Module
 import dagger.Provides

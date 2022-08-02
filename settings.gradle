@@ -14,3 +14,7 @@ dependencyResolutionManagement {
 }
 rootProject.name = "predict"
 include ':app'
+include ':network'
+include ':agify'
+include ':commondto'
+include ':commonexception'

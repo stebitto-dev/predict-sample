@@ -5,9 +5,8 @@ import android.widget.TextView
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.stebitto.agify.api.IAgifyRepository
+import com.stebitto.commonexception.HttpException
 import dagger.hilt.android.AndroidEntryPoint
-import kotlinx.coroutines.flow.catch
-import timber.log.Timber
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -27,11 +26,13 @@ class MainActivity : AppCompatActivity() {
 
         lifecycleScope.launchWhenStarted {
             agifyRepository.getAgePredictionForName("michael")
-                .catch { e ->
-                    textView.text = e.message
-                }
-                .collect {
-                    textView.text = it.toString()
+                .collect { result ->
+                    result.onSuccess { textView.text = it.toString() }
+                    result.onFailure {
+                        with(it as HttpException) {
+                            textView.text = "Code: $code | $text"
+                        }
+                    }
                 }
         }
     }

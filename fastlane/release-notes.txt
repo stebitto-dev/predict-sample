@@ -1,3 +1,1 @@
-Test fastlane app distribution
-    - Test1
-    - Test2
+Setup Agify module

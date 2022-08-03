@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="agify_name">Name</string>
+    <string name="agify_predict_button">Predict</string>
+    <string name="agify_predict_result">Name: %1$s \n Age: %2$s</string>
+</resources>

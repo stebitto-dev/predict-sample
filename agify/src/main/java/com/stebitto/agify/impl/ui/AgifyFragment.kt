@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.inputmethod.InputMethodManager
+import androidx.annotation.VisibleForTesting
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -57,7 +58,8 @@ internal class AgifyFragment : Fragment() {
         }
     }
 
-    private fun renderUI(state: AgifyViewModel.State) {
+    @VisibleForTesting
+    fun renderUI(state: AgifyViewModel.State) {
         when(state) {
             is AgifyViewModel.State.Init -> Unit
             is AgifyViewModel.State.Loading -> {
@@ -71,7 +73,8 @@ internal class AgifyFragment : Fragment() {
             }
             is AgifyViewModel.State.Error -> {
                 binding.buttonSubmit.setLoading(false)
-                binding.textviewResult.text = "Error code ${state.code}, ${state.message}"
+                binding.textviewResult.text =
+                    String.format(getString(R.string.agify_predict_error), state.code, state.message)
             }
         }
     }

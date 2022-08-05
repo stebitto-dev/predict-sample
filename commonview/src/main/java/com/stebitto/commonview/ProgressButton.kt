@@ -50,8 +50,6 @@ class ProgressButton @JvmOverloads constructor(
         textView.isVisible = !loading
     }
 
-    fun isLoading() = progressBar.isVisible
-
     fun setText(text: String?) {
         textView.text = text
         invalidate()

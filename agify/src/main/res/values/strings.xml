@@ -3,4 +3,5 @@
     <string name="agify_name">Name</string>
     <string name="agify_predict_button">Predict</string>
     <string name="agify_predict_result">Name: %1$s \nAge: %2$s</string>
+    <string name="agify_predict_error">Error code %1$s | %2$s</string>
 </resources>

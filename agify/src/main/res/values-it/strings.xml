@@ -2,5 +2,5 @@
 <resources>
     <string name="agify_name">Nome</string>
     <string name="agify_predict_button">Indovina</string>
-    <string name="agify_predict_result">Nome: %1$s \n Età: %2$s</string>
+    <string name="agify_predict_result">Nome: %1$s \nEtà: %2$s</string>
 </resources>

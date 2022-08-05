@@ -1,9 +1,11 @@
 package com.stebitto.agify.impl.ui
 
+import android.content.Context
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -50,19 +52,35 @@ internal class AgifyFragment : Fragment() {
 
     private fun setupListeners() {
         binding.buttonSubmit.setOnClickListener {
-            agifyViewModel.getPredictionForName(binding.edittextName.text.toString())
+            hideKeyboard()
+            agifyViewModel.getPredictionForName(binding.edittextName.text.toString().trim())
         }
     }
 
     private fun renderUI(state: AgifyViewModel.State) {
         when(state) {
             is AgifyViewModel.State.Init -> Unit
-            is AgifyViewModel.State.Loading -> {  }
+            is AgifyViewModel.State.Loading -> {
+                binding.buttonSubmit.setLoading(true)
+                binding.edittextName.text.clear()
+            }
             is AgifyViewModel.State.Success -> {
+                binding.buttonSubmit.setLoading(false)
                 binding.textviewResult.text =
                     String.format(getString(R.string.agify_predict_result), state.name, state.age)
             }
-            is AgifyViewModel.State.Error -> {  }
+            is AgifyViewModel.State.Error -> {
+                binding.buttonSubmit.setLoading(false)
+                binding.textviewResult.text = "Error code ${state.code}, ${state.message}"
+            }
+        }
+    }
+
+    private fun hideKeyboard() {
+        activity?.currentFocus?.let { view ->
+            val inputManager =
+                context?.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+            inputManager.hideSoftInputFromWindow(view.windowToken, 0)
         }
     }
 }

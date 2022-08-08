@@ -18,22 +18,4 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
     }
-
-    override fun onStart() {
-        super.onStart()
-
-        val textView = findViewById<TextView>(R.id.text_log)
-
-        lifecycleScope.launchWhenStarted {
-            agifyRepository.getAgePredictionForName("michael")
-                .collect { result ->
-                    result.onSuccess { textView.text = it.toString() }
-                    result.onFailure {
-                        with(it as HttpException) {
-                            textView.text = "Code: $code | $text"
-                        }
-                    }
-                }
-        }
-    }
 }

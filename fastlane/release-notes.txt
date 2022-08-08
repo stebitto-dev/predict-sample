@@ -1,1 +1,1 @@
-Setup Agify module
+Add Agify UI

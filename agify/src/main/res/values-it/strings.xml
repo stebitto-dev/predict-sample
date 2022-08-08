@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="agify_name">Nome</string>
+    <string name="agify_predict_button">Indovina</string>
+    <string name="agify_predict_result">Nome: %1$s \nEtà: %2$s</string>
+    <string name="agify_predict_error">Codice errore %1$s | %2$s</string>
+</resources>

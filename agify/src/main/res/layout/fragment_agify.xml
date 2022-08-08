@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:padding="16dp">
+
+    <com.google.android.material.textview.MaterialTextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/agify_name"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Headline5"
+        android:layout_gravity="start"/>
+
+    <EditText
+        android:id="@+id/edittext_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:autofillHints="name"
+        android:inputType="textPersonName"
+        android:labelFor="@id/edittext_name"
+        android:minHeight="48dp" />
+
+    <com.stebitto.commonview.ProgressButton
+        android:id="@+id/button_submit"
+        android:layout_width="120dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        app:text="@string/agify_predict_button"
+        app:enabled="true"
+        app:loading="false"
+        app:backgroundTint="@android:color/holo_blue_dark"
+        app:cornerRadius="8dp"/>
+
+    <com.google.android.material.textview.MaterialTextView
+        android:id="@+id/textview_result"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="36dp"
+        android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"/>
+
+</LinearLayout>

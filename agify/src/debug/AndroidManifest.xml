@@ -1,0 +1,10 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.stebitto.agify">
+
+    <application>
+        <activity android:name=".HiltTestActivity"
+            android:theme="@style/Theme.MaterialComponents"
+            android:exported="false"/>
+    </application>
+
+</manifest>
